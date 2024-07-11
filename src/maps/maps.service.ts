@@ -69,14 +69,16 @@ const getAlternativesRoutes = async (from: object, to: object) => {
     const response = await axios.post(
         baseUrl + "/user-drive",
         {
-            from: {
-                y: -6.5692716,
-                x: 106.8082121,
-            },
-            to: {
-                y: -6.6015137,
-                x: 106.8071939,
-            },
+            from,
+            to,
+            // from: {
+            //     y: -6.5692716,
+            //     x: 106.8082121,
+            // },
+            // to: {
+            //     y: -6.6015137,
+            //     x: 106.8071939,
+            // },
             nPaths: 3,
             useCase: "LIVEMAP_PLANNING",
             interval: 15,

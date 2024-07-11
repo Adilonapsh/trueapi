@@ -5,6 +5,7 @@ import {
     getGeoRss,
 } from "./maps.service";
 
+
 export const mapsRoute: Router = Router();
 
 // mapsRoute.use(limiter);
@@ -48,11 +49,15 @@ mapsRoute.use("/alert", async (req: Request, res: Response) => {
 });
 mapsRoute.use("/alternatives", async (req: Request, res: Response) => {
     try {
-        const { from, to } = await req.query;
+        const query = await req.query;
+
+        const from: Object = query.from ? JSON.parse(query.from.toString()) : null;
+        const to: Object = query.to ? JSON.parse(query.to.toString()) : null;
+
         if (from && to) {
             const data = await getAlternativesRoutes(
-                from.toString(),
-                to?.toString()
+                from,
+                to
             );
 
             res.json({
