@@ -25,8 +25,9 @@ mapsRoute.use("/location", async (req: Request, res: Response) => {
                 message: "Data berhasil diambil",
                 data: data,
             });
+        } else {
+            res.json({ code: 422, message: "Invalid Input Parameter" });
         }
-        res.json({ code: 422, message: "Invalid Input Parameter" });
     } catch (err: any) {
         res.json({ code: 404, message: err.message });
     }
@@ -41,8 +42,9 @@ mapsRoute.use("/alert", async (req: Request, res: Response) => {
                 message: "Data berhasil diambil",
                 data: data,
             });
+        } else {
+            res.json({ code: 422, message: "Invalid Input Parameter" });
         }
-        res.json({ code: 422, message: "Invalid Input Parameter" });
     } catch (err: any) {
         res.json({ code: 404, message: err.message });
     }
@@ -65,8 +67,9 @@ mapsRoute.use("/alternatives", async (req: Request, res: Response) => {
                 message: "Data berhasil diambil",
                 data: data,
             });
+        } else {
+            res.json({ code: 422, message: "Invalid Input Parameter" });
         }
-        res.json({ code: 422, message: "Invalid Input Parameter" });
     } catch (err: any) {
         res.json({ code: 404, message: err.message });
     }

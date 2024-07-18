@@ -23,8 +23,9 @@ cekOngkirRoute.use("/location", async (req: Request, res: Response) => {
                 message: "Data berhasil diambil",
                 data: data.areas,
             });
+        } else {
+            res.json({ code: 422, message: "Invalid Input Parameter" });
         }
-        res.json({ code: 422, message: "Invalid Input Parameter" });
     } catch (err: any) {
         res.json({ code: 404, message: err.message });
     }
@@ -45,8 +46,9 @@ cekOngkirRoute.use("/trackings", async (req: Request, res: Response) => {
                 message: "Data berhasil diambil",
                 data: data,
             });
+        } else {
+            res.json({ code: 422, message: "Invalid Input Parameter" });
         }
-        res.json({ code: 422, message: "Invalid Input Parameter" });
     } catch (err: any) {
         res.json({ code: 404, message: err.message });
     }
@@ -88,8 +90,9 @@ cekOngkirRoute.use("/rates", async (req: Request, res: Response) => {
                 message: "Data berhasil diambil",
                 data: data,
             });
+        } else {
+            res.json({ code: 422, message: "Invalid Input Parameter" });
         }
-        res.json({ code: 422, message: "Invalid Input Parameter" });
     } catch (err: any) {
         res.json({ code: 404, message: err.message });
     }
