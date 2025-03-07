@@ -1,7 +1,6 @@
 import axios from "axios";
 import { data } from "cheerio/dist/commonjs/api/attributes";
 import dotenv from "dotenv";
-import prisma from "lib/db";
 
 dotenv.config();
 const baseUrl: string = "https://www.waze.com/live-map/api";
