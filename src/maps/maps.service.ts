@@ -1,5 +1,7 @@
 import axios from "axios";
+import { data } from "cheerio/dist/commonjs/api/attributes";
 import dotenv from "dotenv";
+import prisma from "lib/db";
 
 dotenv.config();
 const baseUrl: string = "https://www.waze.com/live-map/api";
@@ -37,6 +39,8 @@ const getAutoComplete = async (
             address: item.address,
         };
     });
+
+
     return autoComplete;
 };
 
@@ -67,24 +71,16 @@ const getGeoRss = async (
 
 const getAlternativesRoutes = async (from: object, to: object) => {
     const response = await axios.post(
-        baseUrl + "/user-drive",
+        baseUrl + "/user-drive?geo_env=row",
         {
             from,
             to,
-            // from: {
-            //     y: -6.5692716,
-            //     x: 106.8082121,
-            // },
-            // to: {
-            //     y: -6.6015137,
-            //     x: 106.8071939,
-            // },
             nPaths: 3,
             useCase: "LIVEMAP_PLANNING",
             interval: 15,
             arriveAt: true,
         },
-        { headers: { "Content-Type": "text/plain" } }
+        { headers: { "Content-Type": "application/json" } }
     );
     const data = response.data;
     return data;
