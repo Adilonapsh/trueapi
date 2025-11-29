@@ -3,6 +3,14 @@ import { getDataSets } from "./humdata.service";
 
 export const humdataRoute: Router = Router();
 
+/**
+ * @route GET /api/humdata/datasets
+ * @description Get datasets from Humdata.
+ * @query {string} search - Search term.
+ * @query {string} page_size - Number of results per page.
+ * @query {string} page - Page number.
+ * @access Restricted
+ */
 humdataRoute.use("/datasets", async (req: Request, res: Response) => {
     try {
         const { search, page_size, page } = await req.query;

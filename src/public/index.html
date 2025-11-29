@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Truenapsh API - Database as an API</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/lucide-static@latest/font/lucide.css" />
+</head>
+
+<body class="min-h-screen bg-slate-950 text-slate-50 antialiased selection:bg-indigo-500/40 selection:text-slate-50">
+    <div class="min-h-screen flex flex-col">
+        <!-- Top gradient -->
+        <div class="pointer-events-none fixed inset-x-0 -top-40 h-64 bg-gradient-to-b from-indigo-500/25 via-sky-500/10 to-transparent blur-3xl"
+            aria-hidden="true"></div>
+
+        <!-- Navbar -->
+        <header class="w-full border-b border-slate-800/80 backdrop-blur flex items-center justify-center">
+            <div class="w-full max-w-6xl mx-auto flex items-center justify-between gap-6 py-4 px-4 lg:px-6">
+                <!-- Logo -->
+                <div class="flex items-center gap-3">
+                    <div
+                        class="h-8 w-8 rounded-xl bg-gradient-to-tr from-indigo-500 via-sky-500 to-slate-50 flex items-center justify-center shadow-lg shadow-indigo-500/40">
+                        <span class="text-xs font-semibold tracking-tight text-slate-950">
+                            ND
+                        </span>
+                    </div>
+                    <span class="text-base font-semibold tracking-tight text-slate-50">
+                        Truenapsh
+                    </span>
+                </div>
+
+                <!-- Nav links -->
+                <nav class="hidden md:flex items-center gap-6 text-sm text-slate-300">
+                    <a href="#features" class="hover:text-slate-50 transition-colors">Fitur</a>
+                    <a href="#how-it-works" class="hover:text-slate-50 transition-colors">Cara Kerja</a>
+                    <a href="#pricing" class="hover:text-slate-50 transition-colors">Harga</a>
+                    <a href="#docs" class="hover:text-slate-50 transition-colors">Dokumentasi</a>
+                </nav>
+
+                <!-- Actions -->
+                <div class="flex items-center gap-3">
+                    <button
+                        class="hidden sm:inline-flex items-center justify-center rounded-full border border-slate-700/80 bg-slate-900/60 hover:bg-slate-800/80 text-xs font-medium text-slate-200 px-4 py-2 transition-colors">
+                        Masuk
+                    </button>
+                    <button
+                        class="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-indigo-500 to-sky-500 hover:from-indigo-400 hover:to-sky-400 text-xs font-semibold tracking-tight text-slate-950 shadow-lg shadow-indigo-500/40 px-4 sm:px-5 py-2 transition-colors">
+                        Mulai Gratis
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main -->
+        <main class="flex-1 w-full flex items-stretch justify-center">
+            <div class="w-full max-w-6xl mx-auto px-4 lg:px-6 py-10 lg:py-16 flex flex-col gap-16">
+                <!-- Hero section -->
+                <section class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <!-- Hero content -->
+                    <div class="flex flex-col gap-6">
+                        <div
+                            class="inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-slate-900/70 text-[0.7rem] text-indigo-200/90 px-2.5 py-1">
+                            <span class="inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+                            <span>Database sebagai API • Latensi &lt; 50 ms</span>
+                        </div>
+
+                        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-slate-50">
+                            Database API untuk
+                            <span
+                                class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-sky-400 to-cyan-300">
+                                produk modern
+                            </span>
+                            Anda.
+                        </h1>
+
+                        <p class="text-base sm:text-lg text-slate-300 leading-relaxed max-w-xl">
+                            Truenapsh adalah database API yang terkelola penuh untuk aplikasi
+                            web, mobile, dan microservices. CRUD, query kompleks,
+                            autentikasi, dan replikasi hanya dengan satu endpoint aman.
+                        </p>
+
+                        <div class="flex flex-wrap gap-3 items-center">
+                            <button
+                                class="inline-flex items-center gap-2 rounded-full bg-indigo-500 hover:bg-indigo-400 text-xs font-semibold tracking-tight text-slate-950 shadow-lg shadow-indigo-500/40 px-5 py-2.5 transition-colors">
+                                Coba Sekarang
+                                <i class="lucide lucide-arrow-right h-4 w-4" style="stroke-width:1.5"></i>
+                            </button>
+                            <button
+                                class="inline-flex items-center gap-2 rounded-full border border-slate-700/80 bg-slate-900/60 hover:bg-slate-800/80 text-xs font-medium text-slate-200 px-4 py-2.5 transition-colors">
+                                <i class="lucide lucide-book-open h-4 w-4" style="stroke-width:1.5"></i>
+                                Lihat Dokumentasi
+                            </button>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-6 text-xs text-slate-400">
+                            <div class="flex items-center gap-2">
+                                <i class="lucide lucide-shield-check h-4 w-4 text-emerald-400"
+                                    style="stroke-width:1.5"></i>
+                                <span>Enkripsi end-to-end</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="lucide lucide-gauge h-4 w-4 text-sky-400" style="stroke-width:1.5"></i>
+                                <span>99.99% uptime SLA</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="lucide lucide-globe-2 h-4 w-4 text-indigo-400" style="stroke-width:1.5"></i>
+                                <span>Region global</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Code preview / Hero right -->
+                    <div class="relative">
+                        <div class="absolute -inset-6 bg-gradient-to-tr from-indigo-500/20 via-sky-500/10 to-transparent blur-3xl"
+                            aria-hidden="true"></div>
+
+                        <div
+                            class="relative rounded-2xl border border-slate-800/90 bg-slate-950/80 backdrop-blur shadow-2xl shadow-indigo-500/30 overflow-hidden">
+                            <!-- Top bar -->
+                            <div
+                                class="flex items-center justify-between border-b border-slate-800/80 px-4 sm:px-5 py-2.5">
+                                <div class="flex items-center gap-2">
+                                    <div class="flex items-center gap-1.5">
+                                        <span class="h-2.5 w-2.5 rounded-full bg-slate-700"></span>
+                                        <span class="h-2.5 w-2.5 rounded-full bg-slate-700"></span>
+                                        <span class="h-2.5 w-2.5 rounded-full bg-slate-700"></span>
+                                    </div>
+                                    <span class="text-[0.7rem] text-slate-400 font-medium">
+                                        api.Truenapsh.io/v1/maps
+                                    </span>
+                                </div>
+                                <div class="hidden sm:flex items-center gap-1 text-[0.7rem] text-slate-400">
+                                    <span class="rounded-full bg-slate-900 px-2 py-1">
+                                        Indonesia • ap-southeast-1
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Code + response -->
+                            <div class="grid grid-cols-1 lg:grid-cols-2 border-t border-slate-900/80">
+                                <!-- Request -->
+                                <div class="p-4 sm:p-5 border-r border-slate-900/80">
+                                    <div class="flex items-center justify-between mb-3">
+                                        <span
+                                            class="text-[0.7rem] font-medium text-slate-300 uppercase tracking-[0.12em]">
+                                            Permintaan
+                                        </span>
+                                        <span
+                                            class="rounded-full bg-indigo-500/10 text-[0.7rem] text-indigo-200 px-2 py-1">
+                                            Maps API (JavaScript)
+                                        </span>
+                                    </div>
+
+                                    <pre class="text-xs leading-relaxed text-slate-100 font-medium overflow-x-auto"><code>import axios from "axios";
+
+const maps = axios.create({
+  baseURL: "https://api.Truenapsh.io/v1/maps",
+  headers: {
+    "x-api-key": process.env.Truenapsh_API_KEY,
+  },
+});
+
+// Cari koordinat dari alamat
+const result = await maps.get("/geocode", {
+  params: {
+    address: "Jl. Sudirman, Jakarta",
+    country: "ID",
+  },
+});</code></pre>
+                                </div>
+
+                                <!-- Response -->
+                                <div class="p-4 sm:p-5 bg-slate-950">
+                                    <div class="flex items-center justify-between mb-3">
+                                        <span
+                                            class="text-[0.7rem] font-medium text-slate-300 uppercase tracking-[0.12em]">
+                                            Respons
+                                        </span>
+                                        <div class="flex items-center gap-1 text-[0.7rem]">
+                                            <span
+                                                class="inline-flex items-center gap-1 rounded-full bg-emerald-500/10 text-emerald-300 px-2 py-1">
+                                                <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+                                                18 ms
+                                            </span>
+                                            <span class="rounded-full bg-slate-900 text-slate-300 px-2 py-1">
+                                                200 OK
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <pre class="text-xs leading-relaxed text-slate-300 overflow-x-auto"><code>{
+  "data": {
+    "address": "Jl. Jenderal Sudirman, Jakarta",
+    "location": {
+      "lat": -6.21462,
+      "lng": 106.84513
+    },
+    "precision": "street"
+  },
+  "request_id": "req_maps_9af83b"
+}</code></pre>
+                                </div>
+                            </div>
+
+                            <!-- Footer metrics -->
+                            <div
+                                class="flex flex-wrap items-center justify-between gap-3 border-t border-slate-800/80 bg-slate-950/80 px-4 sm:px-5 py-3">
+                                <div class="flex flex-wrap gap-4 text-[0.7rem] text-slate-400">
+                                    <div class="flex items-center gap-1.5">
+                                        <i class="lucide lucide-map h-3.5 w-3.5 text-sky-400"
+                                            style="stroke-width:1.5"></i>
+                                        <span>Routing &amp; geocoding</span>
+                                    </div>
+                                    <div class="flex items-center gap-1.5">
+                                        <i class="lucide lucide-droplets h-3.5 w-3.5 text-emerald-400"
+                                            style="stroke-width:1.5"></i>
+                                        <span>HumData &amp; cuaca</span>
+                                    </div>
+                                </div>
+                                <span class="text-[0.7rem] text-slate-400">
+                                    Juga tersedia: HumData • Cek Ongkir
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Features -->
+                <section id="features" class="space-y-8">
+                    <div class="flex flex-col gap-2 max-w-2xl">
+                        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-slate-50">
+                            Dibangun untuk developer yang butuh cepat dan aman.
+                        </h2>
+                        <p class="text-base text-slate-300 leading-relaxed">
+                            Kelola data aplikasi tanpa mengurus server, koneksi database, atau
+                            replikasi. Fokus pada logika bisnis, bukan infrastruktur.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Feature 1 -->
+                        <div class="rounded-2xl border border-slate-800/80 bg-slate-950/80 p-5 flex flex-col gap-3">
+                            <div
+                                class="h-8 w-8 rounded-xl bg-indigo-500/10 text-indigo-300 flex items-center justify-center">
+                                <i class="lucide lucide-navigation-2 h-4 w-4" style="stroke-width:1.5"></i>
+                            </div>
+                            <h3 class="text-base font-semibold tracking-tight text-slate-50">
+                                Maps API
+                            </h3>
+                            <p class="text-sm text-slate-300 leading-relaxed">
+                                Endpoint siap pakai untuk geocoding, reverse geocoding, dan
+                                routing jarak tempuh di seluruh Indonesia.
+                            </p>
+                            <ul class="mt-1 space-y-1.5 text-xs text-slate-400">
+                                <li>• Koordinat dari alamat &amp; sebaliknya</li>
+                                <li>• Estimasi jarak dan durasi perjalanan</li>
+                            </ul>
+                        </div>
+
+                        <!-- Feature 2 -->
+                        <div class="rounded-2xl border border-slate-800/80 bg-slate-950/80 p-5 flex flex-col gap-3">
+                            <div
+                                class="h-8 w-8 rounded-xl bg-emerald-500/10 text-emerald-300 flex items-center justify-center">
+                                <i class="lucide lucide-droplets h-4 w-4" style="stroke-width:1.5"></i>
+                            </div>
+                            <h3 class="text-base font-semibold tracking-tight text-slate-50">
+                                HumData API
+                            </h3>
+                            <p class="text-sm text-slate-300 leading-relaxed">
+                                Akses data kelembaban, suhu, kualitas udara, dan kondisi
+                                lingkungan untuk aplikasi IoT dan agritech.
+                            </p>
+                            <ul class="mt-1 space-y-1.5 text-xs text-slate-400">
+                                <li>• Data realtime dan historis</li>
+                                <li>• Agregasi per lokasi &amp; rentang waktu</li>
+                            </ul>
+                        </div>
+
+                        <!-- Feature 3 -->
+                        <div class="rounded-2xl border border-slate-800/80 bg-slate-950/80 p-5 flex flex-col gap-3">
+                            <div class="h-8 w-8 rounded-xl bg-sky-500/10 text-sky-300 flex items-center justify-center">
+                                <i class="lucide lucide-package-search h-4 w-4" style="stroke-width:1.5"></i>
+                            </div>
+                            <h3 class="text-base font-semibold tracking-tight text-slate-50">
+                                Cek Ongkir API
+                            </h3>
+                            <p class="text-sm text-slate-300 leading-relaxed">
+                                Hitung ongkos kirim multi-ekspedisi dengan satu endpoint
+                                terstandardisasi untuk e-commerce dan logistik.
+                            </p>
+                            <ul class="mt-1 space-y-1.5 text-xs text-slate-400">
+                                <li>• Tarif berdasarkan kota, kecamatan, dan kode pos</li>
+                                <li>• Dukungan banyak kurir domestik</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- How it works -->
+                <section id="how-it-works" class="space-y-8">
+                    <div class="flex flex-col gap-2 max-w-2xl">
+                        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-slate-50">
+                            Dari skema ke endpoint hanya dalam hitungan menit.
+                        </h2>
+                        <p class="text-base text-slate-300 leading-relaxed">
+                            Buat database, definisikan tabel, dan dapatkan endpoint API
+                            otomatis tanpa konfigurasi manual.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <!-- Step 1 -->
+                        <div class="rounded-2xl border border-slate-800/80 bg-slate-950/80 p-5 flex flex-col gap-3">
+                            <div class="flex items-center gap-3">
+                                <span
+                                    class="h-6 w-6 rounded-full bg-indigo-500/20 text-indigo-200 text-xs font-semibold flex items-center justify-center">
+                                    1
+                                </span>
+                                <h3 class="text-base font-semibold tracking-tight text-slate-50">
+                                    Buat Project &amp; Skema
+                                </h3>
+                            </div>
+                            <p class="text-sm text-slate-300 leading-relaxed">
+                                Tentukan nama project, region, dan definisikan tabel lewat UI
+                                atau file skema.
+                            </p>
+                            <div class="rounded-xl border border-slate-800/80 bg-slate-950/80 p-3 mt-1">
+                                <pre class="text-xs text-slate-300 overflow-x-auto"><code>table ongkir_request {
+  id          uuid primary key,
+  origin      text not null,
+  destination text not null,
+  weight_gram int  not null,
+  courier     text,
+  created_at  timestamptz default now()
+}</code></pre>
+                            </div>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div class="rounded-2xl border border-slate-800/80 bg-slate-950/80 p-5 flex flex-col gap-3">
+                            <div class="flex items-center gap-3">
+                                <span
+                                    class="h-6 w-6 rounded-full bg-indigo-500/20 text-indigo-200 text-xs font-semibold flex items-center justify-center">
+                                    2
+                                </span>
+                                <h3 class="text-base font-semibold tracking-tight text-slate-50">
+                                    Dapatkan Kunci API
+                                </h3>
+                            </div>
+                            <p class="text-sm text-slate-300 leading-relaxed">
+                                Buat API key terpisah untuk Maps, HumData, dan Cek Ongkir
+                                sesuai kebutuhan integrasi Anda.
+                            </p>
+                            <div
+                                class="rounded-xl border border-slate-800/80 bg-slate-950/80 p-3 mt-1 flex items-center justify-between gap-3">
+                                <div class="space-y-1">
+                                    <p class="text-[0.7rem] text-slate-400 uppercase">
+                                        Maps public key
+                                    </p>
+                                    <p class="text-xs font-medium text-slate-100 tracking-tight">
+                                        nd_maps_pub_8dK2...pQ1z
+                                    </p>
+                                </div>
+                                <button
+                                    class="inline-flex items-center gap-1 rounded-full bg-slate-900 hover:bg-slate-800 text-[0.7rem] text-slate-100 px-2.5 py-1.5 transition-colors">
+                                    <i class="lucide lucide-copy h-3.5 w-3.5" style="stroke-width:1.5"></i>
+                                    Salin
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="rounded-2xl border border-slate-800/80 bg-slate-950/80 p-5 flex flex-col gap-3">
+                            <div class="flex items-center gap-3">
+                                <span
+                                    class="h-6 w-6 rounded-full bg-indigo-500/20 text-indigo-200 text-xs font-semibold flex items-center justify-center">
+                                    3
+                                </span>
+                                <h3 class="text-base font-semibold tracking-tight text-slate-50">
+                                    Integrasikan di Kode
+                                </h3>
+                            </div>
+                            <p class="text-sm text-slate-300 leading-relaxed">
+                                Pakai HTTP client favorit atau SDK siap pakai untuk Cek Ongkir
+                                dan HumData dalam satu project.
+                            </p>
+                            <div class="rounded-xl border border-slate-800/80 bg-slate-950/80 p-3 mt-1">
+                                <pre class="text-xs text-slate-300 overflow-x-auto"><code>curl -X POST https://api.Truenapsh.io/v1/cek-ongkir \
+  -H "x-api-key: &lt;API_KEY&gt;" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "origin": "JKT",
+    "destination": "SBY",
+    "weight_gram": 1200,
+    "courier": ["jne", "pos"]
+  }'</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Pricing -->
+                <section id="pricing" class="space-y-8">
+                    <div class="flex flex-col gap-2 max-w-2xl">
+                        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-slate-50">
+                            Harga transparan, mulai gratis untuk membangun.
+                        </h2>
+                        <p class="text-base text-slate-300 leading-relaxed">
+                            Bayar hanya untuk resource yang terpakai. Tanpa biaya setup atau
+                            komitmen jangka panjang.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+                        <!-- Free -->
+                        <div class="rounded-2xl border border-slate-800/80 bg-slate-950/80 p-5 flex flex-col gap-4">
+                            <div class="flex items-center justify-between gap-2">
+                                <h3 class="text-base font-semibold tracking-tight text-slate-50">
+                                    Starter
+                                </h3>
+                                <span class="rounded-full bg-slate-900 text-[0.7rem] text-slate-300 px-2 py-1">
+                                    Untuk side project
+                                </span>
+                            </div>
+                            <div class="space-y-1">
+                                <p class="text-2xl font-semibold tracking-tight text-slate-50">
+                                    Rp0
+                                </p>
+                                <p class="text-xs text-slate-400">Tanpa kartu kredit</p>
+                            </div>
+                            <ul class="space-y-1.5 text-sm text-slate-300 flex-1">
+                                <li>• 50.000 request Maps / HumData / Ongkir per bulan</li>
+                                <li>• 1 GB storage historis</li>
+                                <li>• 1 project &amp; 1 region</li>
+                                <li>• Log dasar &amp; dashboard</li>
+                            </ul>
+                            <button
+                                class="mt-2 inline-flex items-center justify-center rounded-full border border-slate-700/80 bg-slate-950 hover:bg-slate-900 text-xs font-medium text-slate-100 px-4 py-2 transition-colors">
+                                Mulai dengan Starter
+                            </button>
+                        </div>
+
+                        <!-- Pro (highlight) -->
+                        <div
+                            class="rounded-2xl border border-indigo-500/70 bg-gradient-to-b from-indigo-500/15 via-slate-950 to-slate-950 p-5 flex flex-col gap-4 shadow-xl shadow-indigo-500/40 relative overflow-hidden">
+                            <div class="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-indigo-500/20 blur-3xl"
+                                aria-hidden="true"></div>
+                            <div class="flex items-center justify-between gap-2 relative">
+                                <h3 class="text-base font-semibold tracking-tight text-slate-50">
+                                    Pro
+                                </h3>
+                                <span class="rounded-full bg-indigo-500/20 text-[0.7rem] text-indigo-100 px-2 py-1">
+                                    Paling populer
+                                </span>
+                            </div>
+                            <div class="space-y-1 relative">
+                                <p class="text-2xl font-semibold tracking-tight text-slate-50">
+                                    Rp790.000
+                                </p>
+                                <p class="text-xs text-slate-200">per project / bulan</p>
+                            </div>
+                            <ul class="space-y-1.5 text-sm text-slate-100 flex-1 relative">
+                                <li>• 5 juta request Maps, HumData, Cek Ongkir</li>
+                                <li>• 100 GB storage inklusif</li>
+                                <li>• 3 region &amp; 5 environment</li>
+                                <li>• Realtime streaming HumData</li>
+                                <li>• Support email prioritas</li>
+                            </ul>
+                            <button
+                                class="mt-2 inline-flex items-center justify-center rounded-full bg-indigo-500 hover:bg-indigo-400 text-xs font-semibold tracking-tight text-slate-950 px-4 py-2 transition-colors relative">
+                                Pilih Paket Pro
+                            </button>
+                        </div>
+
+                        <!-- Enterprise -->
+                        <div class="rounded-2xl border border-slate-800/80 bg-slate-950/80 p-5 flex flex-col gap-4">
+                            <div class="flex items-center justify-between gap-2">
+                                <h3 class="text-base font-semibold tracking-tight text-slate-50">
+                                    Enterprise
+                                </h3>
+                                <span class="rounded-full bg-slate-900 text-[0.7rem] text-slate-300 px-2 py-1">
+                                    Untuk skala besar
+                                </span>
+                            </div>
+                            <div class="space-y-1">
+                                <p class="text-2xl font-semibold tracking-tight text-slate-50">
+                                    Hubungi kami
+                                </p>
+                                <p class="text-xs text-slate-400">Harga custom</p>
+                            </div>
+                            <ul class="space-y-1.5 text-sm text-slate-300 flex-1">
+                                <li>• Request &amp; storage tanpa batas</li>
+                                <li>• Dedicated cluster &amp; VPC peering</li>
+                                <li>• SLA 99.99% &amp; support 24/7</li>
+                                <li>• Onboarding &amp; migrasi data</li>
+                                <li>• SLA khusus untuk Maps &amp; logistik</li>
+                            </ul>
+                            <button
+                                class="mt-2 inline-flex items-center justify-center rounded-full border border-slate-700/80 bg-slate-950 hover:bg-slate-900 text-xs font-medium text-slate-100 px-4 py-2 transition-colors">
+                                Jadwalkan Demo
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Docs CTA -->
+                <section id="docs"
+                    class="rounded-2xl border border-slate-800/80 bg-gradient-to-r from-slate-950 via-slate-950 to-slate-900/80 p-5 sm:p-7 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                    <div class="space-y-2 max-w-xl">
+                        <h2 class="text-xl sm:text-2xl font-semibold tracking-tight text-slate-50">
+                            Dokumentasi jelas, banyak contoh kode siap pakai.
+                        </h2>
+                        <p class="text-base text-slate-300 leading-relaxed">
+                            Jelajahi referensi Maps, HumData, dan Cek Ongkir; lengkap dengan
+                            snippet untuk web, mobile, dan backend.
+                        </p>
+                        <div class="flex flex-wrap gap-3 text-[0.7rem] text-slate-300">
+                            <span class="inline-flex items-center gap-1 rounded-full bg-slate-900 px-2.5 py-1">
+                                <i class="lucide lucide-javascript h-3.5 w-3.5" style="stroke-width:1.5"></i>
+                                JavaScript &amp; TypeScript
+                            </span>
+                            <span class="inline-flex items-center gap-1 rounded-full bg-slate-900 px-2.5 py-1">
+                                <i class="lucide lucide-code h-3.5 w-3.5" style="stroke-width:1.5"></i>
+                                REST &amp; WebSocket
+                            </span>
+                            <span class="inline-flex items-center gap-1 rounded-full bg-slate-900 px-2.5 py-1">
+                                <i class="lucide lucide-terminal h-3.5 w-3.5" style="stroke-width:1.5"></i>
+                                CLI &amp; migration tool
+                            </span>
+                        </div>
+                    </div>
+                    <div
+                        class="w-full md:w-auto md:min-w-[18rem] rounded-xl border border-slate-800/80 bg-slate-950/80 p-4 space-y-3">
+                        <div class="flex items-center justify-between gap-2">
+                            <span class="text-[0.7rem] font-medium text-slate-300 uppercase tracking-[0.16em]">
+                                Contoh Endpoint
+                            </span>
+                            <span class="rounded-full bg-slate-900 text-[0.7rem] text-slate-300 px-2 py-1">
+                                v1
+                            </span>
+                        </div>
+                        <div
+                            class="rounded-lg border border-slate-800/80 bg-slate-950/80 text-xs text-slate-100 p-3 flex flex-col gap-2">
+                            <div class="flex items-center gap-2">
+                                <span class="rounded-full bg-emerald-500/10 text-emerald-300 text-[0.7rem] px-2 py-1">
+                                    POST
+                                </span>
+                                <span class="truncate">
+                                    https://trueapi.my.id/v1/humdata/query
+                                </span>
+                            </div>
+                            <pre class="text-[0.7rem] text-slate-300 overflow-x-auto"><code>{
+  "location": {
+    "lat": -6.21462,
+    "lng": 106.84513
+  },
+  "metrics": ["humidity", "temperature"],
+  "range": {
+    "from": "2025-11-01T00:00:00Z",
+    "to": "2025-11-20T23:59:59Z"
+  }
+}</code></pre>
+                        </div>
+                        <button
+                            class="w-full inline-flex items-center justify-center gap-1.5 rounded-full bg-slate-50 hover:bg-slate-200 text-xs font-semibold tracking-tight text-slate-950 px-4 py-2 transition-colors">
+                            Buka Dokumentasi Lengkap
+                            <i class="lucide lucide-arrow-up-right h-3.5 w-3.5" style="stroke-width:1.5"></i>
+                        </button>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="w-full border-t border-slate-900/80 mt-10">
+            <div
+                class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 py-5 px-4 lg:px-6 text-xs text-slate-500">
+                <div class="flex items-center gap-2">
+                    <span class="text-sm font-semibold tracking-tight text-slate-200">
+                        Truenapsh
+                    </span>
+                    <span class="h-1 w-1 rounded-full bg-slate-700"></span>
+                    <span>© 2025</span>
+                </div>
+                <div class="flex flex-wrap items-center gap-4">
+                    <a href="#" class="hover:text-slate-300 transition-colors">Kebijakan Privasi</a>
+                    <a href="#" class="hover:text-slate-300 transition-colors">Syarat Layanan</a>
+                    <a href="#" class="hover:text-slate-300 transition-colors">Status Layanan</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>

@@ -11,13 +11,18 @@ export const cekOngkirRoute: Router = Router();
 
 // cekOngkirRoute.use(limiter);
 
+/**
+ * @route GET /api/cek-ongkir/location
+ * @description Get location details from Bitwise API.
+ * @query {string} input - The location search input.
+ * @access Restricted
+ */
 cekOngkirRoute.use("/location", async (req: Request, res: Response) => {
     try {
         const { input } = await req.query;
         if (input) {
             const data = await getLocationToBitwiseAPI(input?.toString());
-            res.setHeader("Access-Control-Allow-Origin", "*"); // Anda bisa mengubah '*' dengan origin yang diizinkan secara spesifik
-            res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
+            // Headers handled by global CORS middleware
             res.json({
                 code: 200,
                 message: "Data berhasil diambil",
@@ -31,6 +36,13 @@ cekOngkirRoute.use("/location", async (req: Request, res: Response) => {
     }
 });
 
+/**
+ * @route GET /api/cek-ongkir/trackings
+ * @description Track shipping details.
+ * @query {string} receipt_number - The receipt number.
+ * @query {string} courier - The courier name.
+ * @access Restricted
+ */
 cekOngkirRoute.use("/trackings", async (req: Request, res: Response) => {
     try {
         const { receipt_number, courier } = await req.query;
@@ -39,8 +51,7 @@ cekOngkirRoute.use("/trackings", async (req: Request, res: Response) => {
                 receipt_number?.toString(),
                 courier?.toString()
             );
-            res.setHeader("Access-Control-Allow-Origin", "*"); // Anda bisa mengubah '*' dengan origin yang diizinkan secara spesifik
-            res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
+            // Headers handled by global CORS middleware
             res.json({
                 code: 200,
                 message: "Data berhasil diambil",
@@ -54,6 +65,18 @@ cekOngkirRoute.use("/trackings", async (req: Request, res: Response) => {
     }
 });
 
+/**
+ * @route GET /api/cek-ongkir/rates
+ * @description Get shipping rates.
+ * @query {string} origin_area_id - Origin area ID.
+ * @query {string} destination_area_id - Destination area ID.
+ * @query {string} couriers - List of couriers.
+ * @query {string} weight - Weight of the package.
+ * @query {string} height - Height of the package.
+ * @query {string} length - Length of the package.
+ * @query {string} width - Width of the package.
+ * @access Restricted
+ */
 cekOngkirRoute.use("/rates", async (req: Request, res: Response) => {
     try {
         const {
@@ -83,8 +106,7 @@ cekOngkirRoute.use("/rates", async (req: Request, res: Response) => {
                 length?.toString(),
                 width?.toString()
             );
-            res.setHeader("Access-Control-Allow-Origin", "*"); // Anda bisa mengubah '*' dengan origin yang diizinkan secara spesifik
-            res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
+            // Headers handled by global CORS middleware
             res.json({
                 code: 200,
                 message: "Data berhasil diambil",
@@ -98,6 +120,11 @@ cekOngkirRoute.use("/rates", async (req: Request, res: Response) => {
     }
 });
 
+/**
+ * @route GET /api/cek-ongkir/s
+ * @description Simple success check endpoint.
+ * @access Restricted
+ */
 cekOngkirRoute.use("/s", async (req: Request, res: Response) => {
     res.send({ code: 200, message: "success" });
 });

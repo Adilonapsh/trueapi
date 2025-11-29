@@ -11,6 +11,14 @@ export const mapsRoute: Router = Router();
 // mapsRoute.use(limiter);
 mapsRoute.use(express.json()); // Add This if using Raw Form Data 
 
+/**
+ * @route GET /api/maps/location
+ * @description Get autocomplete data for a location search.
+ * @query {string} search - The search query.
+ * @query {string} lang - Language code.
+ * @query {string} extent - Map extent.
+ * @access Restricted
+ */
 mapsRoute.use("/location", async (req: Request, res: Response) => {
     try {
         const { search, lang, extent } = await req.query;
@@ -34,6 +42,13 @@ mapsRoute.use("/location", async (req: Request, res: Response) => {
     }
 });
 
+/**
+ * @route GET /api/maps/alert
+ * @description Get GeoRSS alerts.
+ * @query {string} tipe - Type of alert.
+ * @query {string} extent - Map extent.
+ * @access Restricted
+ */
 mapsRoute.use("/alert", async (req: Request, res: Response) => {
     try {
         const { tipe, extent } = await req.query;
@@ -52,6 +67,13 @@ mapsRoute.use("/alert", async (req: Request, res: Response) => {
     }
 });
 
+/**
+ * @route POST /api/maps/alternatives
+ * @description Get alternative routes between two points.
+ * @body {string} from - Starting point.
+ * @body {string} to - Destination point.
+ * @access Restricted
+ */
 mapsRoute.post("/alternatives", async (req: Request, res: Response) => {
     try {
         const { from, to } = req.body;
