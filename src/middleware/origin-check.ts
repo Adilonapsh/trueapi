@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 
-const allowedOrigins = ['localhost:3001', 'truenapsh.my.id', 'trumap.web.id'];
+const allowedOrigins = ['localhost:3001', 'truenapsh.my.id', 'trumap.web.id', 'localhost:3000'];
 
 export const originCheck = (req: Request, res: Response, next: NextFunction) => {
     const origin = req.headers.origin;
