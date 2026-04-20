@@ -29,7 +29,7 @@ export const router: Router = Router();
 
 router.use(cors(corsOption));
 // router.use(originCheck);
-router.use(apiAuth);
+// router.use(apiAuth);
 
 /**
  * @route GET /
