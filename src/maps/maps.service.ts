@@ -19,10 +19,13 @@ const getAutoComplete = async (
             q: search ? search : "jakarta",
             v: extent
                 ? extent
-                : "-6.17887027,106.77483559;-6.16816098,106.79534912",
+                : "-6.1788702,106.7748355;-6.16816098,106.7953491",
             lang: lang ? lang : "id-ID",
             exp: "8,10,12",
             "geo-env": "row",
+        },
+        headers: {
+            "Cookie": "recaptcha-ca-t=ARbRLZ29PmdBLL_60GPf47GWoVZNgisEt1MM16iYq28I-1_PnriVGkM8YPYOIznivXKPEI3-VTGYNYO19CODC7xvOkefdZPyt_PuyXYzfFs-xvSNtFzxaWqRLuYRIjXkfvoItexm94DH3ipJEaH70hZi0HUcioofqIx-WjA1U1WBxEu-o-vEiNrzto7hx7xIkIDDiQ:U=d8b9a27a45000000;",
         },
     });
     const data = response.data;
@@ -79,7 +82,12 @@ const getAlternativesRoutes = async (from: object, to: object) => {
             interval: 15,
             arriveAt: true,
         },
-        { headers: { "Content-Type": "application/json" } }
+        {
+            headers: {
+                "Content-Type": "application/json",
+                "Cookie": "recaptcha-ca-t=ARbRLZ29PmdBLL_60GPf47GWoVZNgisEt1MM16iYq28I-1_PnriVGkM8YPYOIznivXKPEI3-VTGYNYO19CODC7xvOkefdZPyt_PuyXYzfFs-xvSNtFzxaWqRLuYRIjXkfvoItexm94DH3ipJEaH70hZi0HUcioofqIx-WjA1U1WBxEu-o-vEiNrzto7hx7xIkIDDiQ:U=d8b9a27a45000000;",
+            }
+        }
     );
     const data = response.data;
     return data;
