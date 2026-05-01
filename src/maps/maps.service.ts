@@ -1,6 +1,8 @@
 import axios from "axios";
 import { data } from "cheerio/dist/commonjs/api/attributes";
 import dotenv from "dotenv";
+import puppeteer from "puppeteer";
+import googleMapsScraper from "./google-maps-scraper";
 
 dotenv.config();
 const baseUrl: string = "https://www.waze.com/live-map/api";
@@ -93,4 +95,40 @@ const getAlternativesRoutes = async (from: object, to: object) => {
     return data;
 };
 
-export { getAutoComplete, getGeoRss, getAlternativesRoutes };
+const searchGoogleMaps = async (keyword: string, lat: number, lng: number, zoom: number, outputType: string = "json", limit: number = 20) => {
+    const browser = await puppeteer.connect({
+        browserWSEndpoint: process.env.BROWSERLESS_URL || `ws://192.168.18.2:8082`,
+    });
+    try {
+        const page = await browser.newPage();
+        // Set user agent to avoid bot detection
+        await page.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36");
+        
+        const results = await googleMapsScraper({ page, keyword, lat, lng, zoom, limit });
+
+        if (outputType === "geojson") {
+            return {
+                type: "FeatureCollection",
+                features: results.data.map((item: any) => ({
+                    type: "Feature",
+                    geometry: {
+                        type: "Point",
+                        coordinates: [item.lng, item.lat],
+                    },
+                    properties: {
+                        name: item.name,
+                        category: item.kategori,
+                        rating: item.rating,
+                        address: item.address,
+                    },
+                })).filter((f: any) => f.geometry.coordinates[0] !== null && f.geometry.coordinates[1] !== null),
+            };
+        }
+
+        return results;
+    } finally {
+        await browser.close();
+    }
+};
+
+export { getAutoComplete, getGeoRss, getAlternativesRoutes, searchGoogleMaps };

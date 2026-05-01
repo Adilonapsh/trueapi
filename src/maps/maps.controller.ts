@@ -4,6 +4,7 @@ import {
     getAlternativesRoutes,
     getAutoComplete,
     getGeoRss,
+    searchGoogleMaps,
 } from "./maps.service";
 
 export const mapsRoute: Router = Router();
@@ -93,5 +94,44 @@ mapsRoute.post("/alternatives", async (req: Request, res: Response) => {
     } catch (err: any) {
         console.error("Error processing alternatives route:", err);
         res.status(500).json({ code: 500, message: "Internal Server Error" });
+    }
+});
+
+/**
+ * @route GET /api/maps/search
+ * @description Search Google Maps using Puppeteer.
+ * @query {string} keyword - The search keyword.
+ * @query {number} lat - Latitude.
+ * @query {number} lng - Longitude.
+ * @query {number} zoom - Zoom level.
+ * @query {string} type - Output type ('json' or 'geojson').
+ * @query {number} limit - Maximum number of results to fetch.
+ * @access Restricted
+ */
+mapsRoute.get("/search", async (req: Request, res: Response) => {
+    try {
+        const { keyword, lat, lng, zoom, type, limit } = req.query;
+
+        if (!keyword) {
+            return res.status(422).json({ code: 422, message: "Keyword is required" });
+        }
+
+        const data = await searchGoogleMaps(
+            keyword.toString(),
+            lat ? parseFloat(lat.toString()) : -6.2243,
+            lng ? parseFloat(lng.toString()) : 106.8332,
+            zoom ? parseInt(zoom.toString()) : 15,
+            type ? type.toString() : "json",
+            limit ? parseInt(limit.toString()) : 20
+        );
+
+        res.json({
+            code: 200,
+            message: "Data berhasil diambil",
+            data: data,
+        });
+    } catch (err: any) {
+        console.error("Error in Google Maps search:", err);
+        res.status(500).json({ code: 500, message: err.message });
     }
 });
