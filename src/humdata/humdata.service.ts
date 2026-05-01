@@ -40,7 +40,7 @@ const getDataSets = async ({ search, page_size = 2, page = 1 }: { search: string
                         update_date: selector(el).find(".update-date").text().replace(/\n/g, '').replace(/\s+/g, ' ').trim(),
                         desc: selector(el).find(".description").find("p").text().replace(/\n/g, '').replace(/\s+/g, ' ').trim(),
                         metadata: base_url + selector(el).find(".crises-group").find("a").attr("href"),
-                        url: base_url + selector(el).find(".ga-download").attr("href")
+                        url: base_url.includes("http") ? selector(el).find(".ga-download").attr("href") : base_url + selector(el).find(".ga-download").attr("href")
                     }
                 }).get();
                 data.push({
